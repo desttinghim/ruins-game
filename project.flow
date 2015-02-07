@@ -1,0 +1,21 @@
+
+project: {
+	name: "ruins",
+	version: "0.1",
+	author: 'desttinghim',
+
+	app: {
+		name: 'Ruins',
+		package: 'net.dimnstudios.ruins'
+	},
+
+	build: {
+		dependencies: {
+			luxe: '*'
+		}
+	},
+
+	files: {
+		assets: 'assets/'
+	}
+}
