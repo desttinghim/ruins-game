@@ -23,7 +23,7 @@ class Physics extends Component
 	var kinetic : Bool = false;
 	var collides : Bool = false;
 
-	public function new( kinetic:Bool, collides:Bool, ?gravity:Vector)
+	public function new( kinetic:Bool, collides:Bool, ?newShape:Shape, ?gravity:Vector)
 	{
 		// I don't know if I'll use this
 		super({ name: 'physics' });
@@ -36,6 +36,10 @@ class Physics extends Component
 		else
 		{
 			gravity_vector = new Vector( 0, 0 );
+		}
+		if(newShape != null)
+		{
+			shape = newShape;
 		}
 
 		this.kinetic = kinetic;
@@ -64,9 +68,11 @@ class Physics extends Component
 
 	public function on_collision( data:CollisionData )
 	{
-		trace("Collision!");
-		pos.add( data.separation );
-		movement_vector.multiplyScalar(0);
+		if(kinetic) 
+		{
+			pos.add( data.separation );
+			movement_vector.multiplyScalar(0);
+		}
 	}
 
 	public function set_shape( shape:Shape )

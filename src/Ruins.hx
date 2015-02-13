@@ -42,24 +42,26 @@ class Ruins extends luxe.Game
 			pos: new Vector( Luxe.screen.w / 2, Luxe.screen.h - 16 ),
 			color: new Color().rgb(0xffddee)
 			});
+
+		groundSprite.add(new Physics(false, true, 
+			Polygon.rectangle( groundSprite.pos.x, groundSprite.pos.y, 
+				groundSprite.size.x, groundSprite.size.y ) ));
+
+		collideables.push( groundSprite );
 	}	
 
 	override function update( dt:Float )
 	{
 		for(isprite in collideables)
 		{
-			var iphysic = isprite.get('physics');
+			var iphysic = isprite.get('physics').shape;
 			for(asprite in collideables)
 			{
-				var aphysic = asprite.get('physics');
+				var aphysic = asprite.get('physics').shape;
 				var collisionTest = Collision.test( iphysic, aphysic ); 
 				if(collisionTest != null)
 				{
 					isprite.events.fire('collision', collisionTest);
-				}
-				else
-				{
-					trace("No collision!");
 				}
 			}
 		}
