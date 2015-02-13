@@ -6,16 +6,13 @@ project: {
 
 	app: {
 		name: 'Ruins',
-		package: 'net.dimnstudios.ruins'
+		package: 'net.dimnstudios.ruins',
+		main: 'Ruins'
 	},
 
 	build: {
 		dependencies: {
 			luxe: '*'
 		}
-	},
-
-	files: {
-		assets: 'assets/'
 	}
 }

@@ -4,6 +4,18 @@
 		"selected_items":
 		[
 			[
+				"player",
+				"playerCol"
+			],
+			[
+				"colli",
+				"collideables"
+			],
+			[
+				"col",
+				"collideables"
+			],
+			[
 				"sepe",
 				"separate_crate"
 			],
@@ -30,10 +42,6 @@
 			[
 				"separa",
 				"separate_player"
-			],
-			[
-				"colli",
-				"collision_data"
 			],
 			[
 				"disable",
@@ -223,7 +231,7 @@
 			"file": "project.flow",
 			"settings":
 			{
-				"buffer_size": 219,
+				"buffer_size": 184,
 				"line_ending": "Unix"
 			}
 		},
@@ -232,6 +240,25 @@
 			"settings":
 			{
 				"buffer_size": 6223,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "src/Ruins.hx",
+			"settings":
+			{
+				"buffer_size": 1057,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"contents": "\n/*\n* I'll probably use this add physics to objects in the game\n* But not right now\n*/\n\nimport luxe.Component;\nimport luxe.Vector;\n\nimport luxe.collision.Collision;\nimport luxe.collision.CollisionData;\nimport luxe.collision.shapes.Polygon;\nimport luxe.collision.shapes.Circle;\nimport luxe.collision.shapes.Shape;\n\nclass Physics extends Component\n{\n	var shape : Shape;\n	var movement_vector : Vector;\n	var gravity_vector : Vector;\n	var gravity : Bool = false;\n	var kinetic : Bool = false;\n	var collides : Bool = false;\n\n	public function new( kinetic:Bool, collides:Bool, ?gravity:Vector)\n	{\n		// I don't know if I'll use this\n		gravity_vector = gravity;\n		this.kinetic = kinetic;\n		this.collides = collides;\n	}\n\n	override function init()\n	{\n\n	}\n\n	override function update()\n	{\n\n	}\n\n	public function setShape( shape:Shape )\n	{\n		this.shape = shape;\n	}\n\n	public function setGravityVector( g:Vector )\n	{\n		gravity_vector = g;\n	}\n\n	public function setGravity( g:Bool )\n	{\n		gravity = g;\n	}\n\n}",
+			"file": "src/Physics.hx",
+			"file_size": 995,
+			"file_write_time": 130681518527673954,
+			"settings":
+			{
+				"buffer_size": 986,
 				"line_ending": "Unix"
 			}
 		}
@@ -280,8 +307,8 @@
 	},
 	"expanded_folders":
 	[
-		"/home/desttinghim/GameDev/ruins",
-		"/home/desttinghim/GameDev/ruins/src"
+		"/home/desttinghim/GameDev/ruins-game",
+		"/home/desttinghim/GameDev/ruins-game/src"
 	],
 	"file_history":
 	[
@@ -374,7 +401,7 @@
 	"groups":
 	[
 		{
-			"selected": 1,
+			"selected": 2,
 			"sheets":
 			[
 				{
@@ -383,15 +410,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 219,
+						"buffer_size": 184,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								78,
-								78
+								182,
+								182
 							]
 						],
 						"settings":
@@ -403,7 +430,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 1,
+					"stack_index": 3,
 					"type": "text"
 				},
 				{
@@ -419,8 +446,8 @@
 						"selection":
 						[
 							[
-								5625,
-								5625
+								4681,
+								4681
 							]
 						],
 						"settings":
@@ -429,10 +456,68 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 3048.0,
+						"translation.y": 315.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "src/Ruins.hx",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1057,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								901,
+								901
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/sublime_haxe_completion/Haxe.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 90.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "src/Physics.hx",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 986,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								569,
+								569
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/sublime_haxe_completion/Haxe.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": -0.0,
+						"translation.y": 315.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
 					"type": "text"
 				}
 			]
@@ -496,6 +581,10 @@
 		"height": 500.0,
 		"selected_items":
 		[
+			[
+				"",
+				"~/Programming/fishtank/fishtank.sublime-project"
+			],
 			[
 				"fis",
 				"~/Programming/fishtank/fishtank.sublime-project"
