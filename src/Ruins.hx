@@ -33,6 +33,7 @@ class Ruins extends luxe.Game
 			playerCol.set_shape(Polygon.rectangle( 0, 0, 32, 32 ));
 		
 		playerSprite.add(playerCol);
+		playerSprite.add(new PlayerInput());
 
 		collideables.push( playerSprite );
 
