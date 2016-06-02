@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="net.dimnstudios.ruins"
+    android:versionCode="1"
+    android:versionName="0.1"
+    android:installLocation="preferExternal">
+
+    <application android:label="ruins"
+                 android:icon="@drawable/icon"
+                 android:allowBackup="true"
+                 android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
+                 android:hardwareAccelerated="true"
+                 >
+        <activity android:name="net.dimnstudios.ruins.AppActivity"
+                  android:label="ruins"
+                  android:launchMode="singleTask"
+                  android:screenOrientation="landscape"
+                  android:configChanges="keyboardHidden|orientation|screenSize|screenLayout"
+                  >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="tv.ouya.intent.category.GAME" />
+            </intent-filter>
+        </activity>
+    </application>
+
+    <uses-feature android:glEsVersion="0x00020000" />
+
+</manifest>

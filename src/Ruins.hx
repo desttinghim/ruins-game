@@ -1,7 +1,7 @@
 
 /*
 *	Actual game file - this will be used to build base systems
-*	once the minimum viable prototype is complete. 
+*	once the minimum viable prototype is complete.
 */
 import luxe.Input;
 import luxe.Sprite;
@@ -9,72 +9,70 @@ import luxe.Vector;
 import luxe.Color;
 
 import luxe.collision.Collision;
-import luxe.collision.CollisionData;
+import luxe.collision.data.ShapeCollision;
 import luxe.collision.shapes.Shape;
 import luxe.collision.shapes.Circle;
 import luxe.collision.shapes.Polygon;
 
-class Ruins extends luxe.Game
-{
-	var collideables:Array<Sprite>; // Collection of sprites with physics
-	
-	override function ready()
-	{
-		// TODO(louis): Set up collision system
-		collideables = new Array<Sprite>();
+class Ruins extends luxe.Game {
 
-		var playerSprite = new Sprite({
+	var player : Sprite;
+	var playerCol : PhysicsComponent;
+
+	var ground : Sprite;
+	var groundCol : PhysicsComponent;
+
+	override function ready() {
+
+		Reg.physicsGroup = new Array<Shape>();
+
+		player = new Sprite({
 			name: 'player',
 			pos: Luxe.screen.mid,
-			size: new Vector( 32, 32 ),
-			color: new Color().rgb(0xccddff)
-			});
-		var playerCol = new Physics( true, true, new Vector( 0, 50 ) );
-			playerCol.set_shape(Polygon.rectangle( 0, 0, 32, 32 ));
-		
-		playerSprite.add(playerCol);
-		playerSprite.add(new PlayerInput());
+			color: new Color().rgb(0xf94b04),
+			size: new Vector(128, 128)
+		});
 
-		collideables.push( playerSprite );
+		playerCol = new PhysicsComponent(
+			true,
+			true,
+			Polygon.rectangle(player.pos.x, player.pos.y, player.size.x, player.size.y, true),
+			new Vector(0, 200)
+		);
+		player.add(playerCol);
+		Reg.physicsGroup.push(playerCol.shape);
 
-		var groundSprite = new Sprite({
+		ground = new Sprite({
 			name: 'ground',
-			size: new Vector( Luxe.screen.w, 32 ),
-			pos: new Vector( Luxe.screen.w / 2, Luxe.screen.h - 16 ),
-			color: new Color().rgb(0xffddee)
-			});
+			pos: new Vector(Luxe.screen.mid.x, Luxe.screen.h),
+			color: new Color().rgb(0xf94b04),
+			size: new Vector(Luxe.screen.w, 128)
+		});
 
-		groundSprite.add(new Physics(false, true, 
-			Polygon.rectangle( groundSprite.pos.x, groundSprite.pos.y, 
-				groundSprite.size.x, groundSprite.size.y ) ));
+		groundCol = new PhysicsComponent(
+			false,
+			true,
+			Polygon.rectangle(ground.pos.x, ground.pos.y, ground.size.x, ground.size.y, true)
+		);
+		ground.add(groundCol);
+		Reg.physicsGroup.push(groundCol.shape);
 
-		collideables.push( groundSprite );
-	}	
+	} //ready
 
-	override function update( dt:Float )
-	{
-		for(isprite in collideables)
-		{
-			var iphysic = isprite.get('physics').shape;
-			for(asprite in collideables)
-			{
-				var aphysic = asprite.get('physics').shape;
-				var collisionTest = Collision.test( iphysic, aphysic ); 
-				if(collisionTest != null)
-				{
-					isprite.events.fire('collision', collisionTest);
-				}
-			}
-		}
-	}
+	override function update( dt:Float ) {
 
-	override function onkeyup( e:KeyEvent )
-	{
+		// var shapeCollision = Collision.shapeWithShape(playerCol.shape, groundCol.shape);
+		// if(shapeCollision != null) {
+		// 	playerCol.on_collision(shapeCollision);
+		// }
 
-		if(e.keycode == Key.escape)
-		{
+	} //update
+
+	override function onkeyup( e:KeyEvent ) {
+
+		if(e.keycode == Key.escape) {
 			Luxe.shutdown();
 		}
-	}
+	} //onkeyup
 
 }
